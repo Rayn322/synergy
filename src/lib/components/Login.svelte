@@ -5,7 +5,6 @@
 	let password: string;
 </script>
 
-<!-- class="mx-auto mt-[30vh] flex w-[85vw] max-w-lg flex-col rounded bg-zinc-100 p-4 text-lg shadow-md" -->
 <form class="flex flex-col rounded bg-zinc-100 p-4 text-lg shadow-md">
 	<label class="mb-2" for="username">Username</label>
 	<input class="mb-4" type="text" id="username" bind:value={username} />
