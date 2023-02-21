@@ -10,6 +10,6 @@
 </script>
 
 <div class="mx-auto mt-[20vh] flex w-[85vw] max-w-lg flex-col gap-y-4">
-	<h1 class="mx-auto text-center text-2xl">super cool synergy partial replacement</h1>
+	<h1 class="mx-auto text-center text-2xl">super cool partial synergy replacement</h1>
 	<Login />
 </div>
