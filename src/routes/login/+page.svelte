@@ -1,15 +1,54 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
-	import Login from '$lib/components/Login.svelte';
-	import { client } from '$lib/store';
+	import { applyAction, enhance } from '$app/forms';
+	import type { ActionData } from './$types';
 
-	$: if ($client && browser) {
-		goto('/');
-	}
+	export let form: ActionData;
+	let loading = false;
 </script>
 
 <div class="mx-auto mt-[20vh] flex w-[85vw] max-w-lg flex-col gap-y-4">
-	<h1 class="mx-auto text-center text-2xl">super cool partial synergy replacement</h1>
-	<Login />
+	<h1 class="text-center text-2xl">super cool partial synergy replacement</h1>
+	<form
+		use:enhance={(stuff) => {
+			loading = true;
+
+			return async ({ result }) => {
+				loading = false;
+				await applyAction(result);
+			};
+		}}
+		method="POST"
+		class="flex flex-col rounded bg-zinc-100 p-4 text-lg shadow-md"
+	>
+		<label class="mb-2" for="username">Username</label>
+		<input
+			class="mb-4"
+			class:border-red-600={form?.emailMissing}
+			type="text"
+			id="username"
+			name="username"
+		/>
+		<label class="mb-2" for="password">Password</label>
+		<input
+			class="mb-4"
+			class:border-red-600={form?.passwordMissing}
+			type="password"
+			id="password"
+			name="password"
+		/>
+		<button
+			class="bg-zinc-200 p-2 enabled:hover:bg-zinc-300 disabled:bg-zinc-300"
+			disabled={loading}
+			type="submit"
+		>
+			{#if loading}
+				Loading...
+			{:else}
+				Login
+			{/if}
+		</button>
+	</form>
+	{#if form?.message}
+		<div class="rounded bg-red-600 p-2 text-center text-zinc-50">{form.message}</div>
+	{/if}
 </div>
