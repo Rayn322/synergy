@@ -11,17 +11,14 @@
 
 	function getRawPoints(points: string) {
 		const splitString = points.split(' ');
-		const earned = parseInt(splitString[0]);
-		const max = parseInt(splitString[2]);
+		const earned = parseFloat(splitString[0]);
+		const max = parseFloat(splitString[2]);
 
 		if (isNaN(earned) || isNaN(max)) {
 			return null;
 		}
 
-		return {
-			earned: parseInt(splitString[0]),
-			max: parseInt(splitString[2])
-		};
+		return { earned, max };
 	}
 </script>
 
