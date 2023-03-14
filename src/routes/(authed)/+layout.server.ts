@@ -3,15 +3,7 @@ import { login } from '$lib/server/studentvue';
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ cookies, url }) => {
-	if (url.pathname === '/login') {
-		return {
-			streamed: {
-				grades: null
-			}
-		};
-	}
-
+export const load: LayoutServerLoad = async ({ cookies }) => {
 	const username = cookies.get('username');
 	const encryptedPassword = cookies.get('password');
 	if (!username || !encryptedPassword) {
