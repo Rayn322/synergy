@@ -40,7 +40,10 @@
 
 {#if $grades && course}
 	<div class="mx-auto mt-4 max-w-2xl space-y-4">
-		<div class="text-center text-2xl font-semibold">{trimCourseTitle(course.title)}</div>
+		<div class="text-center">
+			<h2 class="text-2xl font-semibold">{trimCourseTitle(course.title)}</h2>
+			<h3 class="text-xl">{course.staff.name}</h3>
+		</div>
 		<div class="divide-y divide-zinc-200 rounded-md border bg-zinc-100 shadow">
 			<!-- no clue why marks is an array but there's only one mark -->
 			{#each course.marks[0].assignments as assignment, i}
