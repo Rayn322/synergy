@@ -2,6 +2,7 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { client, grades } from '$lib/store';
+	import { trimCourseTitle } from '$lib/util';
 	import { onMount } from 'svelte';
 
 	$: if (!$client && browser) {
@@ -13,14 +14,6 @@
 			$grades = await $client.gradebook();
 		}
 	});
-
-	// remove text after the first parenthesis and fix '&' symbols
-	function trimCourseTitle(title: string) {
-		return title
-			.replaceAll('&amp;', '&')
-			.replace(/\(.*\)/, '')
-			.trim();
-	}
 </script>
 
 {#if $grades}

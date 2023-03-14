@@ -3,6 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { client, grades } from '$lib/store';
+	import { trimCourseTitle } from '$lib/util';
 	import { onMount } from 'svelte';
 
 	let id = $page.params.id;
@@ -38,23 +39,26 @@
 </script>
 
 {#if $grades && course}
-	<div class="mx-auto mt-4 max-w-2xl divide-y divide-zinc-200 rounded-md border bg-zinc-100 shadow">
-		<!-- no clue why marks is an array but there's only one mark -->
-		{#each course.marks[0].assignments as assignment, i}
-			{@const points = getRawPoints(assignment.points)}
-			<div class="flex items-center justify-between gap-4 p-2 ">
-				<p class="text-lg">{assignment.name}</p>
-				<div class="flex w-20 shrink-0 justify-around text-lg">
-					{#if points}
-						<span>{points.earned}</span>
-						<span class="text-zinc-500">/</span>
-						<span>{points.max}</span>
-					{:else}
-						<p>---</p>
-					{/if}
+	<div class="mx-auto mt-4 max-w-2xl space-y-4">
+		<div class="text-center text-2xl font-semibold">{trimCourseTitle(course.title)}</div>
+		<div class="divide-y divide-zinc-200 rounded-md border bg-zinc-100 shadow">
+			<!-- no clue why marks is an array but there's only one mark -->
+			{#each course.marks[0].assignments as assignment, i}
+				{@const points = getRawPoints(assignment.points)}
+				<div class="flex items-center justify-between gap-4 p-2 ">
+					<p class="text-lg">{assignment.name}</p>
+					<div class="flex w-20 shrink-0 justify-around text-lg">
+						{#if points}
+							<span>{points.earned}</span>
+							<span class="font-light text-zinc-500">/</span>
+							<span>{points.max}</span>
+						{:else}
+							<p>---</p>
+						{/if}
+					</div>
 				</div>
-			</div>
-		{/each}
+			{/each}
+		</div>
 	</div>
 {:else}
 	<div class="flex h-[80vh] items-center justify-center">
