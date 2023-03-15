@@ -6,7 +6,6 @@
 	export let data: PageData;
 
 	let id = $page.params.id;
-
 	let numId = parseInt(id);
 
 	function getRawPoints(points: string) {
@@ -21,6 +20,15 @@
 		return { earned, max };
 	}
 </script>
+
+<svelte:head>
+	{#await data.streamed.grades then grades}
+		{@const course = grades.courses.at(numId)}
+		{#if course}
+			<title>{trimCourseTitle(course.title)} - Grades</title>
+		{/if}
+	{/await}
+</svelte:head>
 
 {#await data.streamed.grades}
 	<div class="flex h-[80vh] items-center justify-center">

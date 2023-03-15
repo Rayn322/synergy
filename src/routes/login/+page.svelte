@@ -6,6 +6,10 @@
 	let loading = false;
 </script>
 
+<svelte:head>
+	<title>Login - Grades</title>
+</svelte:head>
+
 <div class="mx-auto mt-[20vh] flex w-[85vw] max-w-lg flex-col gap-y-4">
 	<h1 class="text-center text-2xl">super cool partial synergy replacement</h1>
 	<form

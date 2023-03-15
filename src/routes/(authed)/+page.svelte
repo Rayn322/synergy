@@ -5,6 +5,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Grades</title>
+</svelte:head>
+
 {#await data.streamed.grades}
 	<div class="flex h-[80vh] items-center justify-center">
 		<h1 class="text-center text-3xl">Loading...</h1>
