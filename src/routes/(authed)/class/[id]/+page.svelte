@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { trimCourseTitle } from '$lib/util';
+	import { fixXmlText } from '$lib/util';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -25,7 +25,7 @@
 	{#await data.streamed.grades then grades}
 		{@const course = grades.courses.at(numId)}
 		{#if course}
-			<title>{trimCourseTitle(course.title)} - Grades</title>
+			<title>{fixXmlText(course.title)} - Grades</title>
 		{/if}
 	{/await}
 </svelte:head>
@@ -39,7 +39,7 @@
 	{#if course}
 		<div class="mx-auto mt-4 max-w-2xl space-y-4">
 			<div class="text-center">
-				<h2 class="text-2xl font-semibold">{trimCourseTitle(course.title)}</h2>
+				<h2 class="text-2xl font-semibold">{fixXmlText(course.title)}</h2>
 				<h3 class="text-xl">{course.staff.name}</h3>
 			</div>
 			<div class="divide-y divide-zinc-200 rounded-md border bg-zinc-100 shadow">
@@ -47,7 +47,7 @@
 				{#each course.marks[0].assignments as assignment, i}
 					{@const points = getRawPoints(assignment.points)}
 					<div class="flex items-center justify-between gap-4 p-2 ">
-						<p class="text-lg">{assignment.name}</p>
+						<p class="text-lg">{fixXmlText(assignment.name)}</p>
 						<div class="flex w-20 shrink-0 justify-around text-lg">
 							{#if points}
 								<span>{points.earned}</span>
