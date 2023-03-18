@@ -14,9 +14,7 @@ const config = {
 	],
 
 	kit: {
-		adapter: adapter({
-			runtime: 'edge'
-		})
+		adapter: adapter()
 	}
 };
 
