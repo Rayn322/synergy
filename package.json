@@ -15,6 +15,7 @@
 		"@sveltejs/adapter-vercel": "^2.4.0",
 		"@sveltejs/kit": "^1.11.0",
 		"@tailwindcss/forms": "^0.5.3",
+		"@types/crypto-js": "^4.1.1",
 		"@types/node": "^18.15.3",
 		"@typescript-eslint/eslint-plugin": "^5.55.0",
 		"@typescript-eslint/parser": "^5.55.0",
@@ -37,7 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"cryptr": "^6.2.0",
+		"crypto-js": "^4.1.1",
 		"studentvue": "^2.0.2"
 	}
 }

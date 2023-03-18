@@ -10,10 +10,8 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		throw redirect(302, '/login');
 	}
 
-	let password;
-	try {
-		password = decrypt(encryptedPassword);
-	} catch (error) {
+	const password = decrypt(encryptedPassword);
+	if (!password) {
 		cookies.delete('username');
 		cookies.delete('password');
 		throw redirect(302, '/login');

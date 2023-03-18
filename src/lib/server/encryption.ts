@@ -1,14 +1,10 @@
 import { ENCRYPTION_KEY } from '$env/static/private';
-import Cryptr from 'cryptr';
+import { AES, enc } from 'crypto-js';
 
 export function encrypt(text: string) {
-	const cryptr = new Cryptr(ENCRYPTION_KEY);
-
-	return cryptr.encrypt(text);
+	return AES.encrypt(text, ENCRYPTION_KEY).toString();
 }
 
 export function decrypt(text: string) {
-	const cryptr = new Cryptr(ENCRYPTION_KEY);
-
-	return cryptr.decrypt(text);
+	return AES.decrypt(text, ENCRYPTION_KEY).toString(enc.Utf8) as string | null;
 }
