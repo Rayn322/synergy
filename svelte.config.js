@@ -15,8 +15,7 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-			runtime: 'edge',
-			external: ['cryptr']
+			runtime: 'edge'
 		})
 	}
 };
