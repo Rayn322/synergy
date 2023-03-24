@@ -17,8 +17,8 @@
 			loading = true;
 
 			return async ({ result }) => {
-				loading = false;
 				await applyAction(result);
+				loading = false;
 			};
 		}}
 		method="POST"
