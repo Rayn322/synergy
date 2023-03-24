@@ -1,6 +1,7 @@
 import { encrypt } from '$lib/server/encryption';
 import { login } from '$lib/server/studentvue';
 import { fail, redirect } from '@sveltejs/kit';
+import type { CookieSerializeOptions } from 'cookie';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ cookies }) => {
@@ -16,6 +17,7 @@ export const actions: Actions = {
 		const data = await request.formData();
 		const username = data.get('username');
 		const password = data.get('password');
+		const remember = data.get('remember');
 
 		if (!username || !password) {
 			return fail(400, {
@@ -35,8 +37,19 @@ export const actions: Actions = {
 		}
 
 		const encryptedPassword = encrypt(password?.toString());
-		cookies.set('username', username?.toString());
-		cookies.set('password', encryptedPassword);
+		const options: CookieSerializeOptions = {
+			httpOnly: true,
+			sameSite: 'strict',
+			secure: true
+		};
+
+		// remember for a month
+		if (remember) {
+			options.maxAge = 60 * 60 * 24 * 30;
+		}
+
+		cookies.set('username', username?.toString(), options);
+		cookies.set('password', encryptedPassword, options);
 
 		throw redirect(302, '/');
 	}

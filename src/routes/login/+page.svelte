@@ -40,6 +40,10 @@
 			id="password"
 			name="password"
 		/>
+		<div class="mb-2 flex items-center gap-x-2">
+			<input class="h-5 w-5" type="checkbox" id="remember" name="remember" />
+			<label for="remember">Remember Me</label>
+		</div>
 		<button
 			class="bg-zinc-200 p-2 enabled:hover:bg-zinc-300 disabled:bg-zinc-300"
 			disabled={loading}
