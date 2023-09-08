@@ -45,7 +45,7 @@
 			<label for="remember">Remember Me</label>
 		</div>
 		<button
-			class="bg-zinc-200 p-2 enabled:hover:bg-zinc-300 disabled:bg-zinc-300"
+			class="rounded bg-zinc-200 p-2 enabled:hover:bg-zinc-300 disabled:bg-zinc-300"
 			disabled={loading}
 			type="submit"
 		>
@@ -56,6 +56,14 @@
 			{/if}
 		</button>
 	</form>
+
+	<a href="/broken">
+		<div class="rounded bg-red-600 p-2 text-center text-zinc-50 hover:bg-red-700">
+			<p>Broken for now</p>
+			<p class="underline">Click to learn more</p>
+		</div>
+	</a>
+
 	{#if form?.message}
 		<div class="rounded bg-red-600 p-2 text-center text-zinc-50">{form.message}</div>
 	{/if}

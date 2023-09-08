@@ -8,6 +8,7 @@ export async function login(username: string, password: string) {
 			password: password
 		});
 	} catch (e) {
+		console.error(e);
 		return null;
 	}
 }
