@@ -14,7 +14,7 @@
 			rel="noreferrer"
 			class="text-blue-700 underline"
 		>
-			library that I'm using
+			library I'm using
 		</a>
 		is updated (which might be never). If it is updated, hopefully Synergy's new backend will be a lot
 		easier to use but we'll see.
